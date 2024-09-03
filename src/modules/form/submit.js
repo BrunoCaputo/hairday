@@ -1,5 +1,7 @@
 import dayjs from "dayjs";
 
+import { newAppointment } from "../../services/schedule-new.js";
+
 const form = document.querySelector("form");
 const clientName = document.getElementById("client");
 const selectedDate = document.getElementById("date");
@@ -13,7 +15,7 @@ selectedDate.value = todayDate;
 // Minimum date to select
 selectedDate.min = todayDate;
 
-form.onsubmit = (event) => {
+form.onsubmit = async (event) => {
   event.preventDefault();
 
   try {
@@ -31,9 +33,15 @@ form.onsubmit = (event) => {
 
     const [hour] = hourSelected.innerText.split(":");
 
-    const scheduleTime = dayjs(selectedDate.value).add(hour, "hour");
+    const appointmentTime = dayjs(selectedDate.value).add(hour, "hour");
 
     const id = new Date().getTime();
+
+    await newAppointment({
+      id,
+      name,
+      when: appointmentTime,
+    });
   } catch (error) {
     alert("Sorry! Something went wrong with your schedule. Please try again!");
     console.error(error);

@@ -6,7 +6,7 @@
   "author": "Bruno Caputo",
   "scripts": {
     "build": "webpack",
-    "dev": "webpack serve",
+    "dev": "npm run build && webpack serve",
     "server": "json-server --watch server.json --port 8080"
   },
   "dependencies": {
