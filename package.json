@@ -1,4 +1,10 @@
 {
+  "name": "hairday",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Web app for haircut appointments",
+  "author": "Bruno Caputo",
   "scripts": {
     "server": "json-server --watch server.json --port 3000"
   },
