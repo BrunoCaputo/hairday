@@ -4,16 +4,23 @@ import { hoursClick } from "./hours.click.js";
 
 const hours = document.getElementById("hours");
 
-export function hoursLoad({ date }) {
+export function hoursLoad({ date, dailyAppointments }) {
   hours.innerHTML = "";
+
+  const unavailableHours = dailyAppointments.map((appointment) =>
+    dayjs(appointment.when).format("HH:mm")
+  );
+
   const opening = openingHours.map((hour) => {
     const [scheduleHour] = hour.split(":");
 
     const isHourPast = dayjs(date).add(scheduleHour, "hour").isBefore(dayjs());
 
+    const available = !unavailableHours.includes(hour) && !isHourPast;
+
     return {
       hour,
-      available: !isHourPast,
+      available,
     };
   });
 

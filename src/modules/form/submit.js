@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 
 import { newAppointment } from "../../services/new-appointment.js";
+import { schedulesDay } from "../schedules/load.js";
 
 const form = document.querySelector("form");
 const clientName = document.getElementById("client");
@@ -42,6 +43,10 @@ form.onsubmit = async (event) => {
       name,
       when: appointmentTime,
     });
+
+    await schedulesDay();
+
+    clientName.value = "";
   } catch (error) {
     alert("Sorry! Something went wrong with your schedule. Please try again!");
     console.error(error);

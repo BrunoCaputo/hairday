@@ -13,5 +13,5 @@ export async function schedulesDay() {
   showAppointments({ dailyAppointments });
 
   // Render available hours
-  hoursLoad({ date });
+  hoursLoad({ date, dailyAppointments });
 }
