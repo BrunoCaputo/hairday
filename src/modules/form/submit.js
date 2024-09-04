@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import { newAppointment } from "../../services/schedule-new.js";
+import { newAppointment } from "../../services/new-appointment.js";
 
 const form = document.querySelector("form");
 const clientName = document.getElementById("client");
